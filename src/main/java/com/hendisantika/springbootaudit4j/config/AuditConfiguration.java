@@ -1,5 +1,6 @@
 package com.hendisantika.springbootaudit4j.config;
 
+import com.hendisantika.springbootaudit4j.custom.MyMetaData;
 import org.audit4j.core.MetaData;
 import org.audit4j.core.handler.ConsoleAuditHandler;
 import org.audit4j.core.handler.Handler;
