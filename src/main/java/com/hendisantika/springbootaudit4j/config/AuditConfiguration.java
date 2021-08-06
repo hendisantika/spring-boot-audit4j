@@ -3,6 +3,7 @@ package com.hendisantika.springbootaudit4j.config;
 import org.audit4j.core.MetaData;
 import org.audit4j.core.layout.Layout;
 import org.audit4j.core.layout.SimpleLayout;
+import org.audit4j.handler.db.DatabaseAuditHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -33,5 +34,16 @@ public class AuditConfiguration {
     @Bean
     public MetaData metaData() {
         return new MyMetaData();
+    }
+
+    @Bean
+    public DatabaseAuditHandler databaseHandler() {
+        DatabaseAuditHandler databaseHandler = new DatabaseAuditHandler();
+        databaseHandler.setEmbedded("false");
+        databaseHandler.setDb_user(environment.getRequiredProperty("DB_ROOT_USER"));
+        databaseHandler.setDb_password(environment.getRequiredProperty("DB_PASS"));
+        databaseHandler.setDb_url(environment.getRequiredProperty("DB_URL"));
+        databaseHandler.setDb_driver(environment.getRequiredProperty("DB_DRIVER"));
+        return databaseHandler;
     }
 }
