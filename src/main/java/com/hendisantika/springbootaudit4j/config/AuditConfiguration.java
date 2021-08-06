@@ -1,6 +1,10 @@
 package com.hendisantika.springbootaudit4j.config;
 
+import org.audit4j.core.MetaData;
+import org.audit4j.core.layout.Layout;
+import org.audit4j.core.layout.SimpleLayout;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.core.env.Environment;
@@ -20,4 +24,14 @@ public class AuditConfiguration {
 
     @Autowired
     private Environment environment;
+
+    @Bean
+    public Layout layout() {
+        return new SimpleLayout();
+    }
+
+    @Bean
+    public MetaData metaData() {
+        return new MyMetaData();
+    }
 }
