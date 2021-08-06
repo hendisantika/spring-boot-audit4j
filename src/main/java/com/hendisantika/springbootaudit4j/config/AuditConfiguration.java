@@ -1,6 +1,7 @@
 package com.hendisantika.springbootaudit4j.config;
 
 import org.audit4j.core.MetaData;
+import org.audit4j.core.handler.file.FileAuditHandler;
 import org.audit4j.core.layout.Layout;
 import org.audit4j.core.layout.SimpleLayout;
 import org.audit4j.handler.db.DatabaseAuditHandler;
@@ -45,5 +46,11 @@ public class AuditConfiguration {
         databaseHandler.setDb_url(environment.getRequiredProperty("DB_URL"));
         databaseHandler.setDb_driver(environment.getRequiredProperty("DB_DRIVER"));
         return databaseHandler;
+    }
+
+    @Bean
+    public FileAuditHandler fileAuditHandler() {
+        FileAuditHandler fileAuditHandler = new FileAuditHandler();
+        return fileAuditHandler;
     }
 }
